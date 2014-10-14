@@ -1,4 +1,4 @@
-KickShotLevelTwo
+KickShotLevelOne
 ================
 
-The Warm Up mobile version of the KickShot soccer board game.
+HTML5 Version of KickShot Level One
