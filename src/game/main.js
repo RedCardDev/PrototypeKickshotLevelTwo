@@ -2,7 +2,6 @@ game.module(
     'game.main'
 ).require(
     'engine.scene',
-
     'game.assets',
     'game.dice'
 )
@@ -36,60 +35,55 @@ game.createScene('Main', {
 });
 
 game.createScene('Menu', {
-    backgroundColor: 0xb9bec7,
-	menu: null,
-
-    init: function() {
-		var self = this;
-        this.menu = new game.Sprite('menu').addTo(this.stage);
-        this.menu.x = 0;
-        this.menu.y = -this.menu.height;
-        this.addTween(this.menu, {y: 0}, 600, {delay: 400, easing: game.Tween.Easing.Quadratic.Out}).start();
-		
-		//Play Button
-		this.playButton = new game.Sprite('playButton').addTo(this.stage);
-        this.playButton.scale.x = this.playButton.scale.y = 0.8;
-		this.playButton.position.set(50, 750);
-		this.playButton.interactive = true;
-		this.playButton.click = function() {
+	backgroundColor: 0xb9bec7,
+		menu: null,
+	init: function() {
+			var self = this;
+		this.menu = new game.Sprite('menu').addTo(this.stage);
+		this.menu.x = 0;
+		this.menu.y = -this.menu.height;
+		this.addTween(this.menu, {y: 0}, 600, {delay: 400, easing: game.Tween.Easing.Quadratic.Out}).start();
+			//Play Button
+			this.playButton = new game.Sprite('playButton').addTo(this.stage);
+			this.playButton.scale.x = this.playButton.scale.y = 0.8;
+			this.playButton.position.set(50, 750);
+			this.playButton.interactive = true;
+			this.playButton.click = function() {
 			self.addTween(self.menu, {y: -self.menu.height}, 400,
-            {   delay: 50,
-                easing: game.Tween.Easing.Back.In,
-                onComplete: function() {
-                    game.system.setScene('Game');
-                }
-            }).start();};	
-		
-		//Question Button
-		this.questionButton = new game.Sprite('questionButton').addTo(this.stage);
-        this.questionButton.scale.x = this.questionButton.scale.y = 0.75;
-		this.questionButton.position.set(250, 750);
-		this.questionButton.interactive = true;
-		this.questionButton.click = function() {
+				{ delay: 50,
+				easing: game.Tween.Easing.Back.In,
+				onComplete: function() {
+					game.system.setScene('Game');
+				}
+				}).start();};	
+			//Question Button
+			this.questionButton = new game.Sprite('questionButton').addTo(this.stage);
+			this.questionButton.scale.x = this.questionButton.scale.y = 0.75;
+			this.questionButton.position.set(250, 750);
+			this.questionButton.interactive = true;
+			this.questionButton.click = function() {
 			self.addTween(self.menu, {y: -self.menu.height}, 400,
-            {   delay: 50,
-                easing: game.Tween.Easing.Back.In,
-                onComplete: function() {
-                    game.system.setScene('Game');
-                }
-            }).start();};	
-		
-		//Web Linc Button
-		this.webLincButton = new game.Sprite('webLincButton').addTo(this.stage);
-        this.webLincButton.scale.x = this.webLincButton.scale.y = 2.55;
-		this.webLincButton.position.set(450, 750);
-		this.webLincButton.interactive = true;
-		this.webLincButton.click = function() {
+			{ delay: 50,
+				easing: game.Tween.Easing.Back.In,
+				onComplete: function() {
+					game.system.setScene('Game');
+				}
+			}).start();};	
+			//Web Linc Button
+			this.webLincButton = new game.Sprite('webLincButton').addTo(this.stage);
+			this.webLincButton.scale.x = this.webLincButton.scale.y = 2.55;
+			this.webLincButton.position.set(450, 750);
+			this.webLincButton.interactive = true;
+			this.webLincButton.click = function() {
 			self.addTween(self.menu, {y: -self.menu.height}, 400,
-            {   delay: 50,
-                easing: game.Tween.Easing.Back.In,
-                onComplete: function() {
-                    game.system.setScene('Game');
-                }
-            }).start();};	
-		
+			{ delay: 50,
+				easing: game.Tween.Easing.Back.In,
+				onComplete: function() {
+					game.system.setScene('Game');
+				}
+			}).start();};	
 	}	
- });
+});
 
 game.createScene('Game', {
     backgroundColor: 0xb9bec7,
