@@ -38,51 +38,87 @@ game.createScene('Menu', {
 	backgroundColor: 0xb9bec7,
 		menu: null,
 	init: function() {
-			var self = this;
+		var self = this;
 		this.menu = new game.Sprite('menu').addTo(this.stage);
 		this.menu.x = 0;
 		this.menu.y = -this.menu.height;
-		this.addTween(this.menu, {y: 0}, 600, {delay: 400, easing: game.Tween.Easing.Quadratic.Out}).start();
-			//Play Button
-			this.playButton = new game.Sprite('playButton').addTo(this.stage);
-			this.playButton.scale.x = this.playButton.scale.y = 0.8;
-			this.playButton.position.set(50, 750);
-			this.playButton.interactive = true;
-			this.playButton.click = function() {
-			self.addTween(self.menu, {y: -self.menu.height}, 400,
-				{ delay: 50,
-				easing: game.Tween.Easing.Back.In,
-				onComplete: function() {
-					game.system.setScene('Game');
-				}
-				}).start();};	
-			//Question Button
-			this.questionButton = new game.Sprite('questionButton').addTo(this.stage);
-			this.questionButton.scale.x = this.questionButton.scale.y = 0.75;
-			this.questionButton.position.set(250, 750);
-			this.questionButton.interactive = true;
-			this.questionButton.click = function() {
-			self.addTween(self.menu, {y: -self.menu.height}, 400,
-			{ delay: 50,
-				easing: game.Tween.Easing.Back.In,
-				onComplete: function() {
-					game.system.setScene('Game');
-				}
-			}).start();};	
-			//Web Linc Button
-			this.webLincButton = new game.Sprite('webLincButton').addTo(this.stage);
-			this.webLincButton.scale.x = this.webLincButton.scale.y = 2.55;
-			this.webLincButton.position.set(450, 750);
-			this.webLincButton.interactive = true;
-			this.webLincButton.click = function() {
-			self.addTween(self.menu, {y: -self.menu.height}, 400,
-			{ delay: 50,
-				easing: game.Tween.Easing.Back.In,
-				onComplete: function() {
-					game.system.setScene('Game');
-				}
-			}).start();};	
-	}	
+		this.addTween(this.menu, {y: 0}, 600, {delay: 400, easing: game.Tween.Easing.Quadratic.Out,
+             onComplete: function() {
+			 	//Play Button
+				self.playButton = new game.Sprite('playButton').addTo(self.stage);
+				self.playButton.scale.x = self.playButton.scale.y = 0.8;
+				self.playButton.position.set(-600, 750);
+				var tween = new game.Tween(self.playButton.position);
+				tween.to({x: 50 }, 750);
+				tween.easing('Quadratic.InOut');
+				tween.start();
+				self.playButton.interactive = true;
+				self.playButton.click = function() {
+					self.addTween(self.playButton, {x: 700}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In,
+					  onComplete: self.nextScene.bind(self)
+				    }).start();
+					
+					self.addTween(self.questionButton, {x: 900}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.webLincButton, {x: 1100}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+				};
+
+				//Question Button
+				self.questionButton = new game.Sprite('questionButton').addTo(self.stage);
+				self.questionButton.scale.x = self.questionButton.scale.y = 0.75;
+				self.questionButton.position.set(-400, 750);
+				var tween2 = new game.Tween(self.questionButton.position);
+				tween2.to({x: 250 }, 750);
+				tween2.easing('Quadratic.InOut');
+				tween2.start();
+				self.questionButton.interactive = true;
+				self.questionButton.click = function() {
+					self.addTween(self.playButton, {x: 700}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.questionButton, {x: 900}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In,
+					  onComplete: self.nextScene.bind(self)
+				    }).start();
+					
+					self.addTween(self.webLincButton, {x: 1100}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+				};
+								
+				//Web Linc Button
+				self.webLincButton = new game.Sprite('webLincButton').addTo(self.stage);
+				self.webLincButton.scale.x = self.webLincButton.scale.y = 2.55;
+				self.webLincButton.position.set(-200, 750);
+				var tween3 = new game.Tween(self.webLincButton.position);
+				tween3.to({x: 450 }, 750);
+				tween3.easing('Quadratic.InOut');
+				tween3.start();
+				self.webLincButton.interactive = true;
+				self.webLincButton.click = function() {
+					self.addTween(self.playButton, {x: 700}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.questionButton, {x: 900}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.webLincButton, {x: 1100}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In,
+					  onComplete: self.nextScene.bind(self)
+				    }).start();
+				};
+			}
+            }).start();
+		},
+
+    nextScene: function() {
+		this.addTween(this.menu, {y: -this.menu.height}, 400,
+			{ delay: 400, easing: game.Tween.Easing.Quadratic.Out,
+			  onComplete: function() { game.system.setScene('Game'); }
+			}).start();
+    }	
 });
 
 game.createScene('Game', {
