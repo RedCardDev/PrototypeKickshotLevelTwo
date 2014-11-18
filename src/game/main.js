@@ -34,6 +34,7 @@ game.createScene('Main', {
     }
 });
 
+//START MENU
 game.createScene('Menu', {
 	backgroundColor: 0xb9bec7,
 		menu: null,
@@ -44,12 +45,13 @@ game.createScene('Menu', {
 		this.menu.y = -this.menu.height;
 		this.addTween(this.menu, {y: 0}, 600, {delay: 400, easing: game.Tween.Easing.Quadratic.Out,
              onComplete: function() {
+			 
 			 	//Play Button
 				self.playButton = new game.Sprite('playButton').addTo(self.stage);
 				self.playButton.scale.x = self.playButton.scale.y = 0.8;
 				self.playButton.position.set(-600, 750);
 				var tween = new game.Tween(self.playButton.position);
-				tween.to({x: 50 }, 750);
+				tween.to({x: 125 }, 750);
 				tween.easing('Quadratic.InOut');
 				tween.start();
 				self.playButton.interactive = true;
@@ -59,49 +61,21 @@ game.createScene('Menu', {
 					  onComplete: self.nextScene.bind(self)
 				    }).start();
 					
-					self.addTween(self.questionButton, {x: 900}, 750,
-					{ easing: game.Tween.Easing.Quadratic.In }).start();
-					
 					self.addTween(self.webLincButton, {x: 1100}, 750,
 					{ easing: game.Tween.Easing.Quadratic.In }).start();
 				};
-
-				//Question Button
-				self.questionButton = new game.Sprite('questionButton').addTo(self.stage);
-				self.questionButton.scale.x = self.questionButton.scale.y = 0.75;
-				self.questionButton.position.set(-400, 750);
-				var tween2 = new game.Tween(self.questionButton.position);
-				tween2.to({x: 250 }, 750);
-				tween2.easing('Quadratic.InOut');
-				tween2.start();
-				self.questionButton.interactive = true;
-				self.questionButton.click = function() {
-					self.addTween(self.playButton, {x: 700}, 750,
-					{ easing: game.Tween.Easing.Quadratic.In }).start();
-					
-					self.addTween(self.questionButton, {x: 900}, 750,
-					{ easing: game.Tween.Easing.Quadratic.In,
-					  onComplete: self.nextScene.bind(self)
-				    }).start();
-					
-					self.addTween(self.webLincButton, {x: 1100}, 750,
-					{ easing: game.Tween.Easing.Quadratic.In }).start();
-				};
-								
+				
 				//Web Linc Button
 				self.webLincButton = new game.Sprite('webLincButton').addTo(self.stage);
 				self.webLincButton.scale.x = self.webLincButton.scale.y = 2.55;
 				self.webLincButton.position.set(-200, 750);
 				var tween3 = new game.Tween(self.webLincButton.position);
-				tween3.to({x: 450 }, 750);
+				tween3.to({x: 375 }, 750);
 				tween3.easing('Quadratic.InOut');
 				tween3.start();
 				self.webLincButton.interactive = true;
 				self.webLincButton.click = function() {
 					self.addTween(self.playButton, {x: 700}, 750,
-					{ easing: game.Tween.Easing.Quadratic.In }).start();
-					
-					self.addTween(self.questionButton, {x: 900}, 750,
 					{ easing: game.Tween.Easing.Quadratic.In }).start();
 					
 					self.addTween(self.webLincButton, {x: 1100}, 750,
@@ -115,6 +89,129 @@ game.createScene('Menu', {
 
     nextScene: function() {
 		this.addTween(this.menu, {y: -this.menu.height}, 400,
+			{ delay: 400, easing: game.Tween.Easing.Quadratic.Out,
+			  onComplete: function() { game.system.setScene('Game'); }
+			}).start();
+    }
+});
+
+//Card Pick Menu
+game.createScene('CardPick', {
+	backgroundColor: 0xb9bec7,
+		cardPick: null,
+	init: function() {
+		var self = this;
+		this.cardPick = new game.Sprite('cardPickBackground').addTo(this.stage);
+		this.cardPick.x = 0;
+		this.cardPick.y = -this.cardPick.height;
+		this.cardPick.scale.x = this.cardPick.scale.y = 1.7;
+		this.addTween(this.cardPick, {y: 0}, 600, {delay: 400, easing: game.Tween.Easing.Quadratic.Out,
+             onComplete: function() {
+			 	//Use Card Button
+				self.useCardButton = new game.Sprite('useCardButton').addTo(self.stage);
+				self.useCardButton.scale.x = self.useCardButton.scale.y = 1.3;
+				self.useCardButton.position.set(-600, 730);
+				var tween = new game.Tween(self.useCardButton.position);
+				tween.to({x: 100 }, 650);
+				tween.easing('Quadratic.InOut');
+				tween.start();
+				self.useCardButton.interactive = true;
+				self.useCardButton.click = function() {
+					self.addTween(self.useCardButton, {x: 900}, 700,
+					{ easing: game.Tween.Easing.Quadratic.In,
+					  onComplete: self.nextScene.bind(self)
+				    }).start();
+					
+					self.addTween(self.tradeButton, {x: 1000}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.skipButton, {x: 1100}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.mainViewButton, {x: 1200}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+				};
+				
+				//Trade Card Button
+				self.tradeButton = new game.Sprite('tradeButton').addTo(self.stage);
+				self.tradeButton.scale.x = self.tradeButton.scale.y = 1.3;
+				self.tradeButton.position.set(-600, 730);
+				var tween = new game.Tween(self.tradeButton.position);
+				tween.to({x: 350 }, 650);
+				tween.easing('Quadratic.InOut');
+				tween.start();
+				self.tradeButton.interactive = true;
+				self.tradeButton.click = function() {
+					self.addTween(self.tradeButton, {x: 900}, 700,
+					{ easing: game.Tween.Easing.Quadratic.In,
+					  onComplete: self.nextScene.bind(self)
+				    }).start();
+					
+					self.addTween(self.useCardButton, {x: 1000}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.skipButton, {x: 1100}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.mainViewButton, {x: 1200}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+				};
+				
+				//Skip Button
+				self.skipButton = new game.Sprite('skipButton').addTo(self.stage);
+				self.skipButton.scale.x = self.skipButton.scale.y = 1.3;
+				self.skipButton.position.set(-600, 830);
+				var tween = new game.Tween(self.skipButton.position);
+				tween.to({x: 100 }, 850);
+				tween.easing('Quadratic.InOut');
+				tween.start();
+				self.skipButton.interactive = true;
+				self.skipButton.click = function() {
+					self.addTween(self.skipButton, {x: 900}, 900,
+					{ easing: game.Tween.Easing.Quadratic.In,
+					  onComplete: self.nextScene.bind(self)
+				    }).start();
+					
+					self.addTween(self.tradeButton, {x: 1000}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.useCardButton, {x: 1100}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.mainViewButton, {x: 1200}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+				};
+				
+				//Main View Button
+				self.mainViewButton = new game.Sprite('mainViewButton').addTo(self.stage);
+				self.mainViewButton.scale.x = self.mainViewButton.scale.y = 1.3;
+				self.mainViewButton.position.set(-600, 830);
+				var tween = new game.Tween(self.mainViewButton.position);
+				tween.to({x: 350 }, 850);
+				tween.easing('Quadratic.InOut');
+				tween.start();
+				self.mainViewButton.interactive = true;
+				self.mainViewButton.click = function() {
+					self.addTween(self.mainViewButton, {x: 900}, 900,
+					{ easing: game.Tween.Easing.Quadratic.In,
+					  onComplete: self.nextScene.bind(self)
+				    }).start();
+					
+					self.addTween(self.tradeButton, {x: 1000}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.skipButton, {x: 1100}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+					
+					self.addTween(self.useCardButton, {x: 1200}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In }).start();
+				};
+			}
+            }).start();
+		},
+
+    nextScene: function() {
+		this.addTween(this.cardPick, {y: -this.cardPick.height}, 400,
 			{ delay: 400, easing: game.Tween.Easing.Quadratic.Out,
 			  onComplete: function() { game.system.setScene('Game'); }
 			}).start();
@@ -151,10 +248,32 @@ game.createScene('Game', {
                  self.dice = new game.Dice();
                  self.addObject(self.dice);
                  self.showDice();
+				 
+				 //Card Pick Menu Button
+				self.menuButton = new game.Sprite('menuButton').addTo(self.stage);
+				self.menuButton.scale.x = self.menuButton.scale.y = 0.4;
+				self.menuButton.position.set(-200, 860);
+				var tween3 = new game.Tween(self.menuButton.position);
+				tween3.to({x: 540 }, 750);
+				tween3.easing('Quadratic.InOut');
+				tween3.start();
+				self.menuButton.interactive = true;
+				self.menuButton.click = function() {
+					self.addTween(self.menuButton, {x: 1100}, 750,
+					{ easing: game.Tween.Easing.Quadratic.In,
+					  onComplete: self.nextScene.bind(self)
+				    }).start();
+				};
              }
             }).start();
-    },
-
+   },			
+			nextScene: function() {
+				this.addTween(this.menuButton, {y: -this.menuButton.height}, 400,
+				{ delay: 400, easing: game.Tween.Easing.Quadratic.Out,
+				  onComplete: function() { game.system.setScene('CardPick'); }
+				}).start();
+			},
+ 
     enableInput: function() {
         this.canTap = true;
     },
