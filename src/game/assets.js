@@ -16,12 +16,21 @@ game.addAsset('images/background.png','help');
 game.addAsset('images/backButton.png', 'backButton');
 
 //Card Pick View
+game.addAsset('images/leftArrowButton.png','leftArrow');
+game.addAsset('images/rightArrowButton.png','rightArrow');
 game.addAsset('images/CardPickDesignSingle.png','cardPickBackground');
 game.addAsset('images/menuButton.png', 'menuButton');
 game.addAsset('images/MainViewButtonTransparent.png', 'mainViewButton');
 game.addAsset('images/SkipButtonTransparent.png', 'skipButton');
 game.addAsset('images/tradeCardButtonTransparent.png', 'tradeButton');
 game.addAsset('images/UseCardButtonTransparent.png', 'useCardButton');
+
+//Temp cards for card pick view
+game.addAsset('images/RefThrowin.png','card1');
+game.addAsset('images/WildCard2.png','card2');
+game.addAsset('images/WildCard2.png','card3');
+
+game.addAsset('images/textbox.png','textbox');
 
 game.addAsset('images/dice1.png', 'dice1');
 game.addAsset('images/dice2.png', 'dice2');

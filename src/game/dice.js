@@ -7,6 +7,8 @@ game.createClass('Dice', {
     value1: 1,
     value2: 1,
     timing: false,
+	die1: null,
+	die2: null,
 
     init: function() {
         this.die1 = new game.Sprite('dice1').addTo(game.scene.stage);
