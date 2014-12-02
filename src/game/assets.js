@@ -31,6 +31,7 @@ game.addAsset('images/WildCard2.png','card2');
 game.addAsset('images/WildCard2.png','card3');
 
 game.addAsset('images/textbox.png','textbox');
+game.addAsset('images/blackSquare.png','blackSquare');
 
 game.addAsset('images/dice1.png', 'dice1');
 game.addAsset('images/dice2.png', 'dice2');

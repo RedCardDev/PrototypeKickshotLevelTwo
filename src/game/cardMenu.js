@@ -15,14 +15,17 @@ game.createClass('CardMenu', {
 	card2: null,
 	card3: null,
 	textbox: null,
+	blackSquare: null,
 
 	init: function() {
+		this.blackSquare = new game.Sprite('blackSquare').addTo(game.scene.stage);
+	
 		this.card1 = new game.Sprite('card1').addTo(game.scene.stage);
         this.card2 = new game.Sprite('card2').addTo(game.scene.stage);
 		this.card3 = new game.Sprite('card3').addTo(game.scene.stage);
 		
 		this.textbox = new game.Sprite('textbox').addTo(game.scene.stage);
-	
+			
 		this.rightArrow = new game.Sprite('rightArrow').addTo(game.scene.stage);
         this.leftArrow = new game.Sprite('leftArrow').addTo(game.scene.stage);
 		this.useCardButton = new game.Sprite('useCardButton').addTo(game.scene.stage);
@@ -33,6 +36,16 @@ game.createClass('CardMenu', {
 	
 	show: function() {
 		var self = this;
+		
+		//Background
+		self.blackSquare.scale.x = self.blackSquare.scale.y = 100;
+		self.blackSquare.position.set(-550, 0);
+		self.blackSquare.opacity = "0.9";
+		//blackSquare.style.opacity = "0.9";
+		var tween = new game.Tween(self.blackSquare.position);
+		tween.to({x: 0 }, 650);
+		tween.easing('Quadratic.InOut');
+		tween.start();
 		
 		//Temp cards
 		//Card 1
@@ -88,7 +101,7 @@ game.createClass('CardMenu', {
 		tween.to({x: 30 }, 650);
 		tween.easing('Quadratic.InOut');
 		tween.start();
-
+		
 		//Right Arrow Button
 		self.rightArrow.scale.x = self.rightArrow.scale.y = 0.3;
 		self.rightArrow.position.set(-550, 150);
@@ -208,6 +221,9 @@ game.createClass('CardMenu', {
 		{ easing: game.Tween.Easing.Quadratic.In }).start();
 		
 		game.scene.addTween(self.textbox, {x: 900}, 750,
+		{ easing: game.Tween.Easing.Quadratic.In }).start();
+		
+		game.scene.addTween(self.blackSquare, {x: 900}, 750,
 		{ easing: game.Tween.Easing.Quadratic.In }).start();
 	}
 });

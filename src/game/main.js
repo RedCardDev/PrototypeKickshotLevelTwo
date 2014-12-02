@@ -157,7 +157,7 @@ game.createScene('Game', {
     disableInput: function() {
         this.canTap = false;
     },
-
+/*
     mouseup: function() {
         if (!this.canTap) { return; }
 
@@ -176,7 +176,7 @@ game.createScene('Game', {
             this.rollDice();
         }
     },
-
+*/
     hideDice: function() {
         this.disableInput();
         this.dice.hide();
