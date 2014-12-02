@@ -40,8 +40,7 @@ game.createClass('CardMenu', {
 		//Background
 		self.blackSquare.scale.x = self.blackSquare.scale.y = 100;
 		self.blackSquare.position.set(-550, 0);
-		self.blackSquare.opacity = "0.9";
-		//blackSquare.style.opacity = "0.9";
+		self.blackSquare.alpha = 0.7;
 		var tween = new game.Tween(self.blackSquare.position);
 		tween.to({x: 0 }, 650);
 		tween.easing('Quadratic.InOut');
